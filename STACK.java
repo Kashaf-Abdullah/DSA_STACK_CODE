@@ -38,8 +38,12 @@ public Object secondtop(){
     //remove and return second top element 
     public Object popsecondelement(){
         if(size==0) throw new IllegalStateException("stack is empty");
+        
+        //When deleting an element in between an array, we have to replace that element with last element and then make the last element null.
+        //Otherwise there will be a NULL value in your aray.
         Object obj=a[size-2];
-        a[size-2]=null;
+        a[size-2]=a[--size];
+        a[size] = null;
         return obj;
 
     }
@@ -47,27 +51,14 @@ public Object secondtop(){
 
 //return bottom element of stack
 public Object bottomelement(){
-
-Object res="";
     if(size==0) throw new IllegalStateException("stack is empty");
-for (int index=0; index<size; index++){
-    if(index == 0){
-res=a[index];
-break;
-    }   
-}
-return res;
+    //you can simply return objects of arrays through the index
+    return a[0];
 }
 public Object secondlement(){
-    Object res="";
     if(size==0) throw new IllegalStateException("stack is empty");
-for (int index=0; index<size; index++){
-    if(index == 1){
-res=a[index];
-break;
-    }   
-}
-return res;
+    //you can simply return objects of arrays through the index
+    return a[1];
 }
 public Object pop(){
     if(size==0) throw new IllegalStateException("stack is empty");
@@ -142,9 +133,12 @@ public Object popbottom(){
     
     if(size==0) throw new IllegalStateException("stack is empty");
 
-Object obj=a[0];
-a[0]=null;
-return obj;
+    Object obj=a[0];
+    //When deleting an element in between an array, we have to replace that element with last element and then make the last element null.
+        //Otherwise there will be a NULL value in your aray.
+    a[0]=[--size];
+    a[size] = null;
+    return obj;
 }
 
 public void display(){
@@ -164,7 +158,8 @@ public void display(){
   public Object popaftertop(){//second top
     if(size==0) throw new IllegalStateException("stack is empty");
     Object obj=a[size-2];
-    a[size-2]=null;
+    a[size-2]=a[--size];
+      a[size] = null;
     return obj;
   }
 
